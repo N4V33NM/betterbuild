@@ -48,6 +48,10 @@ h6,
     z-index: 99;
 }
 
+.border-custom {
+    border: 5px solid #FF00FF !important;
+}
+
 
 /*** Spinner ***/
 #spinner {
@@ -385,11 +389,17 @@ h6,
 
 /*** Team ***/
 .team-items {
-    margin: -.75rem;
+    display: flex; /* Ensures proper alignment */
+    flex-wrap: wrap; /* Allows responsiveness */
+    justify-content: center; /* Centers the team members */
+    margin: 0; /* Remove negative margin */
+    position: relative;
 }
 
 .team-item {
-    padding: .75rem;
+    padding: 0.75rem;
+    width: 100%; /* Make sure the width adjusts properly */
+    max-width: 400px; /* Set a limit for better display */
 }
 
 .team-item::after {
@@ -400,7 +410,7 @@ h6,
     top: 0;
     left: 0;
     background: #FFFFFF;
-    transition: .5s;
+    transition: 0.5s;
     z-index: -1;
 }
 
