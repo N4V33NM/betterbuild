@@ -119,7 +119,7 @@
     <!-- Page Header End -->
 
 
-    <!-- Appointment Start -->
+   <!-- Appointment Start -->
 <div class="container-xxl py-5">
     <div class="container">
         <div class="row g-5">
@@ -153,55 +153,85 @@
                 </div>
             </div>
             
-            <!-- Form Section -->
+          <!-- Form Section -->
 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
     <!-- Netlify Form Integration with reCAPTCHA -->
-    <form name="appointment" method="POST" data-netlify="true" data-netlify-recaptcha="true">
-        <div class="row g-3">
-            <!-- Name Input -->
-            <div class="col-12 col-sm-6">
-                <input type="text" name="name" class="form-control" placeholder="Your Name" required style="height: 55px;">
-            </div>
-            <!-- Email Input -->
-            <div class="col-12 col-sm-6">
-                <input type="email" name="email" class="form-control" placeholder="Your Email" required style="height: 55px;">
-            </div>
-            <!-- Mobile Input -->
-            <div class="col-12 col-sm-6">
-                <input type="text" name="mobile" class="form-control" placeholder="Your Mobile" required style="height: 55px;">
-            </div>
-            <!-- Service Dropdown -->
-            <div class="col-12 col-sm-6">
-                <select name="service" class="form-select" required style="height: 55px;">
-                    <option selected disabled>Choose Service</option>
-                    <option value="2D animation">2D animation</option>
-                    <option value="3D animation">3D animation</option>
-                    <option value="house planning">house planning</option>
-                </select>
-            </div>
-            <!-- Date Input -->
-            <div class="col-12 col-sm-6">
-                <input type="date" name="date" class="form-control" placeholder="date" required style="height: 55px;">
-            </div>
-            <!-- Time Input -->
-            <div class="col-12 col-sm-6">
-                <input type="time" name="time" class="form-control" placeholder="time" required style="height: 55px;">
-            </div>
-            <!-- Message Input -->
-            <div class="col-12">
-                <textarea name="message" class="form-control" rows="5" placeholder="Message" required></textarea>
-            </div>
-            <!-- Netlify reCAPTCHA -->
-            <div class="col-12">
-                <div data-netlify-recaptcha="true"></div>
-            </div>
-            <!-- Submit Button -->
-            <div class="col-12">
-                <button class="btn btn-primary w-100 py-3" type="submit">Book Appointment</button>
-            </div>
+    <form name="appointment" method="POST" data-netlify="true" data-netlify-recaptcha="true" onsubmit="return validateCompleteForm()">
+      <div class="row g-3">
+        <!-- Name Input -->
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required style="height: 55px;">
+            <div class="invalid-feedback">Please enter your name</div>
+          </div>
         </div>
+        
+        <!-- Email Input -->
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <input type="email" id="email" name="email" class="form-control" placeholder="Your Email" required style="height: 55px;">
+            <div class="invalid-feedback">Please enter a valid email address</div>
+          </div>
+        </div>
+        
+        <!-- Mobile Input -->
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <input type="tel" id="mobile" name="mobile" class="form-control" placeholder="Your Mobile (10 digits)" required style="height: 55px;" maxlength="10" pattern="[0-9]{10}">
+            <div class="invalid-feedback">Please enter a valid 10-digit mobile number</div>
+          </div>
+        </div>
+        
+        <!-- Service Dropdown -->
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <select id="service" name="service" class="form-select" required style="height: 55px;">
+              <option value="" selected disabled>Choose Service</option>
+              <option value="2D animation">2D animation</option>
+              <option value="3D animation">3D animation</option>
+              <option value="house planning">house planning</option>
+            </select>
+            <div class="invalid-feedback">Please select a service</div>
+          </div>
+        </div>
+        
+        <!-- Date Input -->
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <input type="date" id="date" name="date" class="form-control" required style="height: 55px;">
+            <div class="invalid-feedback">Please select a future date</div>
+          </div>
+        </div>
+        
+        <!-- Time Input -->
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <input type="time" id="time" name="time" class="form-control" required style="height: 55px;">
+            <div class="invalid-feedback">Please select a time</div>
+          </div>
+        </div>
+        
+        <!-- Message Input -->
+        <div class="col-12">
+          <div class="form-group">
+            <textarea id="message" name="message" class="form-control" rows="5" placeholder="Message" required></textarea>
+            <div class="invalid-feedback">Please enter your message</div>
+          </div>
+        </div>
+        
+        <!-- Netlify reCAPTCHA -->
+        <div class="col-12">
+          <div id="captcha-container" data-netlify-recaptcha="true"></div>
+          <div class="invalid-feedback" id="captcha-feedback">Please complete the CAPTCHA verification</div>
+        </div>
+        
+        <!-- Submit Button -->
+        <div class="col-12">
+          <button class="btn btn-primary w-100 py-3" type="submit" id="submit-button">Book Appointment</button>
+        </div>
+      </div>
     </form>
-            </div>
+  </div>
         </div>
     </div>
 </div>
